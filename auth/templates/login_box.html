@@ -1,14 +1,18 @@
 {% if default_auth_system %}
-<p><a  style="font-size:1.3em; border: 1px solid #bbb; padding: 5px;" href="{% url auth.views.start system_name=default_auth_system %}?return_url={{return_url}}">{{default_auth_system_obj.LOGIN_MESSAGE}}</a></p>
-{% else %}
-{% for auth_system in enabled_auth_systems %}
-{% ifequal auth_system "password" %}
+<p><a  href="{{SECURE_URL_HOST}}{% url auth.views.start system_name=default_auth_system %}?return_url={{return_url}}" title="{{default_auth_system_obj.LOGIN_MESSAGE}}">
+<img src="/static/auth/login-icons/{{default_auth_system}}.png" alt="{{default_auth_system}}" style="border:0"/>
+</a></p>
 {% else %}
 <p>
-    <a href="{{SECURE_URL_HOST}}{% url auth.views.start system_name=auth_system %}?return_url={{return_url}}" style="font-size: 1.4em;">
-<img border="0" height="35" src="/static/auth/login-icons/{{auth_system}}.png" alt="{{auth_system}}" /> {{auth_system}}
-{% endifequal %}
+{% for auth_system in enabled_auth_systems %}
+{% ifequal auth_system "password1" %}
+{% else %}
+    <!--<a href="{{SECURE_URL_HOST}}{% url auth.views.start system_name=auth_system %}?return_url={{return_url}}" style="font-size: 1.4em;background: url('/static/auth/login-icons/{{auth_system}}.png') no-repeat;padding-left: 50px;display: block; height: 42px; padding: 0.3em 0 0.3em 50px">-->
+    <a href="{{SECURE_URL_HOST}}{% url auth.views.start system_name=auth_system %}?return_url={{return_url}}" title="{{auth_system}}">
+<img src="/static/auth/login-icons/{{auth_system}}.png" alt="{{auth_system}}" style="border:0"/>
+<!--{{auth_system}-->
 </a>
-</p>
+{% endifequal %}
 {% endfor %}
+</p>
 {% endif %}
