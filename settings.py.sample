@@ -157,6 +157,11 @@ TWITTER_DM_TOKEN = {"oauth_token": "", "oauth_token_secret": "", "user_id": "", 
 LINKEDIN_API_KEY = ''
 LINKEDIN_API_SECRET = ''
 
+# LDAP
+LDAP_HOST = "example.com"
+LDAP_PORT = 389
+LDAP_BASE = "ou=People,dc=example,dc=com"
+
 # email server
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
