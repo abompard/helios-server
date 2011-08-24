@@ -9,6 +9,7 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 
 import logging
+from urlparse import urljoin
 
 # some parameters to indicate that status updating is possible
 STATUS_UPDATES = False
@@ -101,7 +102,7 @@ Your password: %s
     return HttpResponseRedirect(return_url)
   
 def get_auth_url(request, redirect_url = None):
-  return reverse(password_login_view)
+  return urljoin(settings.SECURE_URL_HOST, reverse(password_login_view))
     
 def get_user_info_after_auth(request):
   user = request.session['password_user']

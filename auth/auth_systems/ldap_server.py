@@ -10,6 +10,7 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 
 import logging
+from urlparse import urljoin
 
 import ldap
 
@@ -116,7 +117,7 @@ def ldap_login_view(request):
 #    return HttpResponseRedirect(return_url)
   
 def get_auth_url(request, redirect_url = None):
-  return reverse(ldap_login_view)
+  return urljoin(settings.SECURE_URL_HOST, reverse(ldap_login_view))
     
 def get_user_info_after_auth(request):
   user = request.session['ldap_user']
